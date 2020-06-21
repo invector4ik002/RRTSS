@@ -17,7 +17,7 @@ function App () {
          <div className="row form--outline">
             <div className="col form--outline form--padding">
                <h2>Синхронные запросы</h2>
-               <Posts posts={[1, 2, 3]} />
+               <Posts />
             </div>
 
             <div className="col form--outline form--padding">
