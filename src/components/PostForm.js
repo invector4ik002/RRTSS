@@ -10,13 +10,28 @@ export default class PostForm extends React.Component {
 
    handleSubmit = (event) => {
       event.preventDefault();
-      console.log('work handler');
+      const {title} = this.state;
+      const newPost = {
+         title, id: Date.now().toString()
+      }
+      console.log('work handler', newPost);
+      this.setState(
+         {
+            title: ''
+         }
+      )
    };
 
-   changeInutHandler = (event ) => {
-      this.setState((prev) => ({
-         [event.target.name]: event.target.value
-      }))
+   changeInutHandler = (event) => {
+      event.persist();
+      this.setState((prev) => (
+         {
+         ...prev, 
+         ...{
+               [event.target.name]: event.target.value
+            }
+         }
+      ))
    };
 
    render() {
