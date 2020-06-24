@@ -13,7 +13,7 @@ const Posts = ({ syncPosts }) => {
    return (
       syncPosts.map((post) => {
          return (
-            <Post post={post} key={post} />
+            <Post post={post} key={post.id} />
          )
       })
    ) 

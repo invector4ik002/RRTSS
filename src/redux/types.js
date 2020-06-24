@@ -1,1 +1,4 @@
 export const CREATE_POST = 'POST/CREATE_POSTS'; 
+export const FETCH_POSTS = 'POST/FETCH_POSTS';
+export const SHOW_LOADER = 'APP/SHOW_LOADER';
+export const HODE_LOADER = 'APP/HODE_LOADER';
