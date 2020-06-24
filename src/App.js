@@ -22,7 +22,7 @@ function App () {
 
             <div className="col form--outline form--padding">
             <h2>Асинхронные запросы</h2>
-               <FetchedPosts posts={[1, 2, 3]}/>
+               <FetchedPosts />
             </div>
          </div>
       </div>
