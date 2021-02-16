@@ -1,8 +1,11 @@
 import React from 'react';
 import Post from './Post';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const Posts = ({ syncPosts }) => {
+export const Posts = () => {
+   
+   const syncPosts = useSelector(state => state.posts.posts)
 
    if(!syncPosts.length) {
       return (
@@ -19,11 +22,11 @@ const Posts = ({ syncPosts }) => {
    ) 
 }
 
-const mapStateToProps = (state) => {
-   console.log('Posts:', state)
-   return {
-      syncPosts: state.posts.posts
-   }
-}
+// const mapStateToProps = (state) => {
+//    console.log('Posts:', state)
+//    return {
+//       syncPosts: state.posts.posts
+//    }
+// }
 
-export default connect(mapStateToProps, null)(Posts)
+// export default (Posts)
