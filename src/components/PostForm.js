@@ -1,38 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createPost, showAlert } from '../redux/actions';
 import { Alert } from './Alert';
 
-class PostForm extends React.Component {
-   constructor(props) {
-      super(props) 
-      this.state = {
-         title: '',
-      }
-   }
+// class PostForm extends React.Component {
+//    constructor(props) {
+//       super(props) 
+//       this.state = {
+//          title: '',
+//       }
+//    }
+export const PostForm = () => {
 
-   handleSubmit = (event) => {
+   const [newpost, setPost] = useState({title: ''});
+   const alert = useSelector(state => state.app.alert)
+
+   // console.log('object');
+   const handleSubmit = (event) => {
 
       event.preventDefault();
-      const {title} = this.state;
-
-      if(!title.trim()){
+      // const {title} = this.state;
+      if(!newpost.title.trim()){
          return this.props.showAlert('Ну что то нужно написать, ты же понимаешь')
       }
-
       const newPost = {
-         title, id: Date.now().toString()
+         title: newpost.title, 
+         id: Date.now().toString()
       }
-
-      // console.log(newPost) 
-      this.props.createPost(newPost)
-      this.setState({title: ''})
+      console.log(newPost) 
+      // createPost(newPost)
+      // this.setState({title: ''})
 
    };
 
-   changeInutHandler = (event) => {
+   const changeInutHandler = (event) => {
       event.persist();
-      this.setState((prev) => (
+      setPost((prev) => (
          {
          ...prev, 
             ...{ [event.target.name]: event.target.value }
@@ -40,42 +44,41 @@ class PostForm extends React.Component {
       ))
    };
 
-   render() {
-      return (
-         <div>
-            <h1>Post Form</h1>
-            <form onSubmit={this.handleSubmit}>
-               {this.props.alert && <Alert text={this.props.alert}/>}
-               <div className="form-group">
-                  <label htmlFor="TitleName">TitleName</label>
-                  <input 
-                     onChange={this.changeInutHandler}
-                     value={this.state.title}
-                     name='title'
-                     type="text" 
-                     className="form-control" 
-                     id="TitleName" 
-                  />
-               </div>
-            </form>
-            <button 
-               onClick={this.handleSubmit}
-               type='submit' 
-               className="btn btn-primary"
-            >Submit
-            </button>
-         </div>
-      )
-   }
+
+   return (
+      <div>
+         <h1>Post Form</h1>
+         <form onSubmit={handleSubmit}>
+            {/* {this.props.alert && <Alert text={this.props.alert}/>} */}
+            <div className="form-group">
+               <label htmlFor="TitleName">TitleName</label>
+               <input 
+                  onChange={changeInutHandler}
+                  value={newpost.title}
+                  name='title'
+                  type="text" 
+                  className="form-control" 
+                  id="TitleName" 
+               />
+            </div>
+         </form>
+         <button 
+            onClick={handleSubmit}
+            type='submit' 
+            className="btn btn-primary"
+         >Submit
+         </button>
+      </div>
+   )
 }
 
-const mapDispatchToProps = {
-   createPost,
-   showAlert
-};
+// const mapDispatchToProps = {
+//    createPost,
+//    showAlert
+// };
 
-const mapStateToProps = (state) => ({
-   alert: state.app.alert
-});
+// const mapStateToProps = (state) => ({
+//    alert: state.app.alert
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+// export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

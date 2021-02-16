@@ -1,6 +1,6 @@
 import React from 'react';
-import PostForm from './components/PostForm';
-import {Posts} from './components/Posts';
+import { PostForm } from './components/PostForm';
+import { Posts } from './components/Posts';
 import FetchedPosts from './components/FetchedPosts';
 import './index.css';
 
